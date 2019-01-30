@@ -9,6 +9,7 @@
         waUrl: null,
         contact_id: null,
         confirm_message: null,
+        comment_message: null,
         init: function () {
             jQuery.ajaxSetup({ cache:false });
 
@@ -67,12 +68,14 @@
             }
         },
         apiSendNote: function(order_id) {
-            $('#customernotes-update-comment-' + order_id).removeClass('update').addClass('loading');
-            $.post('?plugin=customernotes&action=sendcomment', { order_id : order_id }, function (d) {
-                if (d.status == 'ok') {
-                    $('#customernotes-update-comment-' + order_id).removeClass('loading').addClass('update');
-                }
-            }, 'json');
+            if (confirm(this.comment_message)) {
+                $('#customernotes-update-comment-' + order_id).removeClass('update').addClass('loading');
+                $.post('?plugin=customernotes&action=sendcomment', { order_id : order_id }, function (d) {
+                    if (d.status == 'ok') {
+                        $('#customernotes-update-comment-' + order_id).removeClass('loading').addClass('update');
+                    }
+                }, 'json');
+            }
         },
         apiGetNotes: function(order_id) {
             $.post('?plugin=customernotes&action=getcomments', { order_id : order_id }, function (d) {

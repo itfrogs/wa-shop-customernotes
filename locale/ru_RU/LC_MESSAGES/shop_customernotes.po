@@ -221,3 +221,7 @@ msgstr "Удалить"
 #: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.bstats_notes.html:15
 msgid "No comments for this customer in bstats.ru"
 msgstr "Нет заметок по этому покупателю на bstats.ru"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:58
+msgid "Comments may contain confidential information about the customer. Are you sure you want to send this comment to an external database? Anyone who makes a request for this customer will see it."
+msgstr "Комментарии могут содержать конфиденциальную информацию о покупателе. Вы уверены что хотите отправить этот комментарий во внешнюю базу? Его увидят все, кто сделает запрос по этому покупателю."
