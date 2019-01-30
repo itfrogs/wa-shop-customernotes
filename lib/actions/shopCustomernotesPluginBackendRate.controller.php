@@ -37,6 +37,8 @@ class shopCustomernotesPluginBackendRateController extends waJsonController
             $type = waRequest::request('type', 'up', 'string');
             $order_id = waRequest::request('order_id', 0, 'int');
 
+            $settings = $this->plugin->getSettings();
+
             $rate = $type === 'up' ? 1 : -1;
 
             $order_model = new shopOrderModel();
@@ -52,6 +54,47 @@ class shopCustomernotesPluginBackendRateController extends waJsonController
                 $note  = $nm->getById($order['id']);
             }
 
+            if ($settings['get_uuids']) {
+                $api = new shopCustomernotesApi();
+                $api_customer_model = new shopCustomernotesCustomerModel();
+
+                $customer = $api_customer_model->getById($order['contact_id']);
+
+                if (empty($customer)) {
+                    try {
+                        $uuids = $api->getUuid($order['contact_id']);
+                        //waLog::dump($uuids, 'uuids.log');
+                        if (count($uuids) == 1) {
+                            $uuid = reset($uuids);
+                            $uuid = $api->updateUuid($uuid->uuid, $order['contact_id']);
+                            if (isset($uuid['uuid'])) {
+                                $customer = $api->saveCustomer($order['contact_id'], $uuid);
+                                if (!empty($customer['country'])) {
+                                    $customer['country'] = waCountryModel::getInstance()->name(ifempty($customer['country']));
+                                }
+                                $this->view->assign('api_contact_id', $order['contact_id']);
+                                $this->view->assign('api_customer', $customer);
+                            }
+                        }
+                        else {
+                            $this->view->assign('uuids', (array) $uuids);
+                        }
+                    } catch (waException $e) {
+                        if (waSystemConfig::isDebug()) {
+                            waLog::log($e->getMessage(), 'customernotes-api-error.log');
+                        }
+                    }
+                }
+                else {
+                    if (!empty($customer['country'])) {
+                        $customer['country'] = waCountryModel::getInstance()->name(ifempty($customer['country']));
+                    }
+                    $this->view->assign('api_contact_id', $order['contact_id']);
+                    $this->view->assign('api_customer', $customer);
+                }
+            }
+
+            $this->view->assign('settings', $settings);
             $this->view->assign('note', $note);
             $this->view->assign('notes', $notes);
             $this->view->assign('order_id', $order_id);

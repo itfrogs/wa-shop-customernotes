@@ -27,6 +27,16 @@
     <div id="customernotes-notes" class="block noprint">
         {include file="./info_section.notes.html" inline}
     </div>
+    {if isset($api_customer) && !empty($api_customer) && !empty($settings.dossier_token)}
+        <div id="customernotes-bstats-button" class="block noprint">
+            <a href="javascript:void(0);" class="button" onclick="$.Customernotes.apiGetNotes({$note.order_id})" title="[`Get notes from bstats.ru`]">
+                [`Get notes from bstats.ru`]
+            </a>
+        </div>
+        <div id="customernotes-bstats" class="block noprint">
+        </div>
+    {/if}
+
 </div>
 <style type="text/css">
     body.s-printable #customernotesControlForm,

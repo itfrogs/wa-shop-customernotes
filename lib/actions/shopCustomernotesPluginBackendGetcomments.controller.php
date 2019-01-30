@@ -3,12 +3,11 @@
  * Created by PhpStorm.
  * User: snark | itfrogs.ru
  * Date: 1/30/19
- * Time: 1:50 PM
+ * Time: 8:19 PM
  */
 
-class shopCustomernotesPluginBackendSendcommentController extends waJsonController
+class shopCustomernotesPluginBackendGetcommentsController extends waJsonController
 {
-
     /**
      * @throws waException
      */
@@ -20,25 +19,28 @@ class shopCustomernotesPluginBackendSendcommentController extends waJsonControll
             $api = new shopCustomernotesApi();
             $api_customer_model = new shopCustomernotesCustomerModel();
 
-            $nm = new shopCustomernotesNotesModel();
-            $note  = $nm->getById($order_id);
+            $om = new shopOrderModel();
+            $order  = $om->getById($order_id);
 
-            $customer = $api_customer_model->getById($note['contact_id']);
+            $customer = $api_customer_model->getById($order['contact_id']);
 
             if (!empty($customer)) {
                 $data = array(
                     'uuid'          => $customer['uuid'],
-                    'order_id'      => $order_id,
-                    'rate'          => $note['rate'],
-                    'comment'       => $note['note'],
                 );
 
-                $response = $api->request('customer.addcomment', $data);
+                $response = $api->request('customer.getcomments', $data);
 
                 if (isset($response->error)) {
                     $this->setError($response->error);
                 }
-
+                else {
+                    $view = wa()->getView();
+                    $view->assign('notes', $response);
+                    $this->response = array(
+                        'notes_template' => $view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.bstats_notes.html'),
+                    );
+                }
             }
         }
         else {

@@ -17,7 +17,7 @@
                     <td width="5%" style="text-align: center;">
                         {if isset($api_customer) && !empty($api_customer) && !empty($settings.dossier_token) && !empty($note.note)}
                             <a href="javascript:void(0);" onclick="$.Customernotes.apiSendNote({$note.order_id})" title="[`Send to bstats.ru`]">
-                                <i id="customernotes-update-comment-{$note.order_id}" class="icon16 update"></i>
+                                <i id="customernotes-update-comment-{$note.order_id}" class="icon16 export"></i>
                             </a>
                         {/if}
                     </td>

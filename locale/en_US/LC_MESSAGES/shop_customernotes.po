@@ -195,3 +195,32 @@ msgstr ""
 #: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:56
 msgid "Refresh client info"
 msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:32
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:33
+msgid "Get notes from bstats.ru"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:86
+msgid "Е-mail match percentage"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:96
+msgid "Phone match percentage"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:105
+msgid "Choose customer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.notes.html:19
+msgid "Send to bstats.ru"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.notes.html:25
+msgid "Delete"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.bstats_notes.html:15
+msgid "No comments for this customer in bstats.ru"
+msgstr ""

@@ -1,0 +1,16 @@
+{if !empty($notes)}
+    <table style="width: 100%;" class="zebra">
+        {foreach $notes as $note}
+            <tr>
+                <td width="5%" style="text-align: center;">
+                    {shopCustomernotesPluginViewHelper::getRatePic($note->rate)}
+                </td>
+                <td width="95%">
+                    <span>{$note->comment|escape}</span>
+                </td>
+            </tr>
+        {/foreach}
+    </table>
+{else}
+    <span style="color: red;">[`No comments for this customer in bstats.ru`]</span>
+{/if}
