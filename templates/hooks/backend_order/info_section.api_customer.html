@@ -1,0 +1,110 @@
+{if isset($api_customer) && !empty($api_customer)}
+    <table class="zebra">
+        {if !empty($api_customer.country)}
+            <tr>
+                <td style="width: 20%;">
+                    [`Country`]
+                </td>
+                <td>
+                    {$api_customer.country}
+                </td>
+            </tr>
+        {/if}
+        {if !empty($api_customer.city)}
+            <tr>
+                <td style="width: 20%;">
+                    [`City`]
+                </td>
+                <td>
+                    {$api_customer.city}
+                </td>
+            </tr>
+        {/if}
+        {if $settings.send_rating_stats}
+            <tr>
+                <td style="width: 20%;">
+                    [`Total rating`]
+                </td>
+                <td>
+                    {if $api_customer.total_rating > 0}<span style="color: green;">{elseif $api_customer.total_rating < 0}<span style="color: red;">{/if}
+                            {$api_customer.total_rating}
+                            {if $api_customer.total_rating != 0}</span>{/if}
+                </td>
+            </tr>
+        {/if}
+        {if $settings.send_pay_stats}
+            <tr>
+                <td style="width: 20%;">
+                    [`Total payments`]
+                </td>
+                <td>
+                    {$api_customer.payments}
+                </td>
+            </tr>
+        {/if}
+        {if $settings.send_refund_stats}
+            <tr>
+                <td style="width: 20%;">
+                    [`Total refunds`]
+                </td>
+                <td>
+                    {$api_customer.refunds}
+                </td>
+            </tr>
+        {/if}
+    </table>
+    <br />
+    <a href="javascript:void(0);" class="button" onclick="$.Customernotes.contactcheck();">[`Refresh client info`]&nbsp;<i class="icon16 sync"></i></a>
+    <br />
+{elseif isset($uuids) && !empty($uuids)}
+
+    {foreach $uuids as $api_customer}
+        <table class="zebra">
+            {if !empty($api_customer->country)}
+                <tr>
+                    <td style="width: 30%;">
+                        [`Country`]
+                    </td>
+                    <td>
+                        {$api_customer->country}
+                    </td>
+                </tr>
+            {/if}
+            {if !empty($api_customer->city)}
+                <tr>
+                    <td style="width: 30%;">
+                        [`City`]
+                    </td>
+                    <td>
+                        {$api_customer->city}
+                    </td>
+                </tr>
+            {/if}
+            {if isset($api_customer->email_percent) && !empty($api_customer->email_percent)}
+                <tr>
+                    <td style="width: 30%;">
+                        [`Е-mail match percentage`]
+                    </td>
+                    <td>
+                        {$api_customer->email_percent}%
+                    </td>
+                </tr>
+            {/if}
+            {if isset($api_customer->phone_percent) && !empty($api_customer->phone_percent)}
+                <tr>
+                    <td style="width: 30%;">
+                        [`Phone match percentage`]
+                    </td>
+                    <td>
+                        {$api_customer->phone_percent}%
+                    </td>
+                </tr>
+            {/if}
+        </table>
+        <br />
+        <a href="javascript:void(0);" class="button" onclick='$.Customernotes.choose({$contact_id}, {$api_customer|json_encode});'>[`Choose customer`]&nbsp;<i class="icon16 move"></i></a>
+        <br /><br />
+    {/foreach}
+{/if}
+
+

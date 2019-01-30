@@ -1,0 +1,33 @@
+<ul class="zebra">
+    {foreach $notes as $note}
+        <li class="customernotesNoteLi" data-order_id="{$note.order_id}">
+            <table style="width: 100%; margin: 0;">
+                <tr>
+                    <td width="5%" style="text-align: center;">
+                        {shopCustomernotesPluginViewHelper::getRatePic($note.rate)}
+                    </td>
+                    <td width="10%" style="text-align: center;">
+                        <a href="#/orders/id={$note.order_id}/" data-order_id="{$note.order_id}">
+                            {$wa->shop->orderId($note.order_id)}
+                        </a>
+                    </td>
+                    <td width="75%">
+                        <span>{$note.note|escape}</span>
+                    </td>
+                    <td width="5%" style="text-align: center;">
+                        {if isset($api_customer) && !empty($api_customer) && !empty($settings.dossier_token) && !empty($note.note)}
+                            <a href="javascript:void(0);" onclick="$.Customernotes.apiSendNote({$note.order_id})" title="[`Send to bstats.ru`]">
+                                <i id="customernotes-update-comment-{$note.order_id}" class="icon16 update"></i>
+                            </a>
+                        {/if}
+                    </td>
+                    <td width="5%" style="text-align: center;">
+                        <a href="javascript:void(0);" onclick="$.Customernotes.deleteNote(this)" title="[`Delete`]">
+                            <i class="icon16 delete"></i>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    {/foreach}
+</ul>

@@ -1,0 +1,79 @@
+<h1>[`Customer's notes`]</h1>
+<form id="plugins-settings-form" target="plugins-settings-iframe" enctype="multipart/form-data" method="post"
+      action="?module=plugins&id=customernotes&action=save">
+    {$wa->csrf()}
+    <div style="display: table; width: 100%;">
+        <div style="display: table-cell">
+            <ul class="tabs" id="customernotes-tabs">
+                <li class="selected"><a href="#customernotes-basic">[`Basic settings`]</a></li>
+                {foreach $tabs as $key => $tab}
+                    <li><a href="#customernotes-{$key}">{$tab.name}</a></li>
+                {/foreach}
+            </ul>
+            <div class="tab-content" id="customernotes-tabs-content">
+                <div class="block" id="customernotes-basic">
+                    {include file="./Basic.html" inline}
+                </div>
+                {foreach $tabs as $key => $tab}
+                    <div class="block" id="customernotes-{$key}">
+                        {include file="./{$tab.template}"  inline}
+                    </div>
+                {/foreach}
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <div class="value submit">
+                        <input class="button green" type="submit" value="[`Save`]">
+                        <span id="plugins-settings-form-status" style="display:none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<iframe id="plugins-settings-iframe" name="plugins-settings-iframe" style="display:none">
+    <html>
+    <head></head>
+    <body></body>
+    </html>
+</iframe>
+
+<script>
+    $(function () {
+        $.plugins.options.useIframeTransport = true;
+
+        $($.plugins).bind('success', function (event, response) {
+            $('#customernotes-is-savevield').html('');
+            var errors = '';
+            if (response.data.list) {
+                $('#customernotes-fields-list').html($.Customernotes_settings.decode(response.data.list));
+            }
+            if (response.data.form) {
+                $('#customernotes-field-form').html($.Customernotes_settings.decode(response.data.form));
+            }
+        });
+        $($.plugins).bind('error', function (event, response) {
+            $('#customernotes-is-savevield').html('');
+        });
+
+        $.when(
+                $.Deferred(function (deferred) {
+                    if ($.Customernotes_settings) deferred.resolve();
+                    else {
+                        $.shop.trace('Loading customernotes_settings.js', []);
+                        $.getScript('{$wa_app_static_url}plugins/customernotes/js/customernotes_settings.{if !$wa->debug()}min.{/if}js', deferred.resolve)
+                    }
+                })
+        ).done(function () {
+                    $.Customernotes_settings.init();
+                    {if isset($tables) && !empty($tables)}
+                        $.Customernotes_settings.tables = {json_encode($tables)};
+                    {else}
+                        $.Customernotes_settings.tables = null;
+                    {/if}
+                    $.shop.trace('$.Customernotes_settings initialized', []);
+                });
+    });
+</script>
+
+

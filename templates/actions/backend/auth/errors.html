@@ -1,0 +1,10 @@
+{if !empty($errors)}
+    <div class="block">
+        <h3>[`Errors`]</h3>
+        {foreach $errors as $error}
+            <p>
+                {$error['error']} : {$error['error_description']}
+            </p>
+        {/foreach}
+    </div>
+{/if}

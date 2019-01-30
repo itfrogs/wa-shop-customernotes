@@ -8,12 +8,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n"
-"%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 "Language: ru_RU\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
 
@@ -37,8 +36,7 @@ msgstr "Позволяет создавать и просматривать за
 msgid "Save"
 msgstr "Сохранить"
 
-#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:7
-#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:9
+#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:7 /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:9
 msgid "Hide notes"
 msgstr "Спрятать заметки"
 
@@ -53,3 +51,145 @@ msgstr "Спрятать заметки в заказе"
 #: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:6
 msgid "Hides the note in order by default"
 msgstr "По умолчанию заметки в заказе будут спрятаны"
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/feedbackControl.html:6
+msgid "QR code"
+msgstr "QR код"
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/feedbackControl.html:10
+msgid "Technical support for this plugin"
+msgstr "Техническая поддержка этого плагина"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:8 /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:10
+msgid "Show notes"
+msgstr "Показать заметки"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:39
+msgid "Delete this note?"
+msgstr "Удалить эту заметку?"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.rating.html:13
+msgid "Total:"
+msgstr "Всего:"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Basic.html:1 /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:8
+msgid "Basic settings"
+msgstr "Основные настройки"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:1
+msgid "Flex order"
+msgstr "Гибкий заказ"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Info.html:1 /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:102
+msgid "Information"
+msgstr "Информация"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Api.html:1 /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:98
+msgid "External base connect"
+msgstr "Соединение с внешней базой"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:6
+msgid "You are logged in"
+msgstr "Вы авторизованы"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:11
+msgid "Logout"
+msgstr "Выход"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:47
+msgid "Connect"
+msgstr "Подключиться"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/errors.html:3
+msgid "Errors"
+msgstr "Ошибки"
+
+#: /wa-apps/shop/plugins/customernotes/lib/classes/shopCustomernotesApi.class.php:58
+msgid "The plugin is not authorized on the external server."
+msgstr "Плагин не авторизован на внешнем сервере."
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendLogin.controller.php:105
+msgid "Settings error"
+msgstr "Ошибка настроек"
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendLogin.controller.php:106
+msgid "Unable to login. See for more details in customernotes-auth-error.log"
+msgstr "Не могу войти. Более подробную информацию смотрите в customernotes-auth-error.log"
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendShownotes.controller.php:24
+msgid "Access denied"
+msgstr "Доступ запрещен"
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:5
+msgid "Show notes in the order"
+msgstr "Показывать заметки в заказе"
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:6
+msgid "Shows the note in order by default"
+msgstr "Показывать заметки в заказе по умолчанию"
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:28
+msgid "Autorization"
+msgstr "Авторизация"
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:36
+msgid "Ask for technical support"
+msgstr "Запросить техническую поддержку"
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:39
+msgid "Click on the link to contact the developer."
+msgstr "Перейдите по ссылке чтобы связаться с разработчиком."
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:1
+msgid "Customer's notes"
+msgstr "Заметки о клиенте"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:23
+msgid "Automatically retrieve the UUID of all users from the external database. No personal data and no statistics are transmitted. You simply get a unique user ID that can be used to receive or transmit statistical data."
+msgstr ""
+"Автоматически получать UUID всех пользователей из внешней базы. При этом не передается никаких персональных данных и никакой статистики. Вы просто получаете уникальный идентификатор пользователя, который может быть использован для "
+"получения или передачи статистических данных."
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:32
+msgid "Automatically send customer payment statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of payment for the order for the given UUID are stored."
+msgstr "Автоматически отправлять на внешний сервер статистику по оплатам клиентов. Никакой персональной информации или сумм оплат. На сервере сохраняется только UUID клиента и количество фактов оплаты заказа для данного UUID."
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:41
+msgid "Automatically send customer returns statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of order return for this UUID are saved."
+msgstr "Автоматически отправлять на внешний сервер статистику по возвратам клиентов. Никакой персональной информации или сумм оплат. На сервере сохраняется только UUID клиента и количество фактов возврата заказа для данного UUID."
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/requirements.php:6
+msgid "The data exchange with third-party servers"
+msgstr "Обмен данными со сторонними серверами"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:9
+msgid "bstats.ru info"
+msgstr "Информация от bstats.ru"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:5
+msgid "Country"
+msgstr "Страна"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:15
+msgid "City"
+msgstr "Город"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:25
+msgid "Total rating"
+msgstr "Общий рейтинг"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:37
+msgid "Total payments"
+msgstr "Оплачено заказов"
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:47
+msgid "Total refunds"
+msgstr "Количество возвратов"
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:50
+msgid "Automatically send customer rating statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the rating for this UUID are saved."
+msgstr "Автоматически отправлять на внешний сервер рейтинг клиентов. Никакой персональной информации или сумм оплат. На сервере сохраняется только UUID клиента и рейтинг для данного UUID."
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:56
+msgid "Refresh client info"
+msgstr "Обновить информацию о клиенте"

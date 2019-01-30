@@ -18,12 +18,19 @@ class shopCustomernotesPluginBackendRateController extends waJsonController
      */
     private $plugin;
 
+    /**
+     * shopCustomernotesPluginBackendRateController constructor.
+     * @throws waException
+     */
     function __construct()
     {
         $this->view = waSystem::getInstance()->getView();
         $this->plugin = wa()->getPlugin('customernotes');
     }
 
+    /**
+     * @throws waException
+     */
     public function execute()
     {
         if (wa()->getUser()->getRights('shop', 'orders')) {
@@ -32,14 +39,26 @@ class shopCustomernotesPluginBackendRateController extends waJsonController
 
             $rate = $type === 'up' ? 1 : -1;
 
-            $rm = new shopCustomernotesNotesModel();
-            $note = $rm->rateCustomer($order_id, $rate);
+            $order_model = new shopOrderModel();
+            $order = $order_model->getById($order_id);
+
+            $nm = new shopCustomernotesNotesModel();
+
+            $note = array();
+            $notes = array();
+            if (!empty($order)) {
+                $nm->rateCustomer($order_id, $rate);
+                $notes  = $nm->getNotesByContactId($order['contact_id']);
+                $note  = $nm->getById($order['id']);
+            }
 
             $this->view->assign('note', $note);
+            $this->view->assign('notes', $notes);
             $this->view->assign('order_id', $order_id);
             $this->response = array(
-                'note' =>  $note,
-                'note_template' => $this->view->fetch($this->plugin->getPluginPath() . '/templates/oneNote.html'),
+                'notes_template'    => $this->view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.notes.html'),
+                'form_template'     => $this->view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.form.html'),
+                'rating_template'   => $this->view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.rating.html'),
             );
         }
     }

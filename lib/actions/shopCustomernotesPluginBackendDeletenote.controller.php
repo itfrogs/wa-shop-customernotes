@@ -14,31 +14,33 @@ class shopCustomernotesPluginBackendDeletenoteController extends waJsonControlle
     private $view;
 
     /**
-     * @var shopCustomernotesPlugin $plugin
+     * shopCustomernotesPluginBackendDeletenoteController constructor.
+     * @throws waException
      */
-    private $plugin;
-
     function __construct()
     {
         $this->view = waSystem::getInstance()->getView();
-        $this->plugin = wa()->getPlugin('customernotes');
     }
 
+    /**
+     * @throws waException
+     */
     public function execute()
     {
         if (wa()->getUser()->getRights('shop', 'orders')) {
-            $note_id = waRequest::request('note_id', '0', 'int');
+            $order_id = waRequest::request('order_id', '0', 'int');
             $nm = new shopCustomernotesNotesModel();
-            $note = $nm->getById($note_id);
+            $note = $nm->getById($order_id);
 
             $this->view->assign('contact_id', $note['contact_id']);
             $this->view->assign('order_id', $note['order_id']);
-//            $this->view->assign('notes', $nm->getNotesByContactId($note['contact_id']));
 
-            if ($nm->deleteById($note_id)) {
+            if ($nm->deleteById($order_id)) {
+                $note = array();
+                $this->view->assign('note', $note);
                 $this->response = array(
-                    'note_id' =>  $note_id,
-                    'form_template' => $this->view->fetch($this->plugin->getPluginPath() . '/templates/notesForm.html'),
+                    'form_template'     => $this->view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.form.html'),
+                    'rating_template'   => $this->view->fetch(shopCustomernotesPlugin::getPluginPath() . '/templates/hooks/backend_order/info_section.rating.html'),
                 );
             }
             else {

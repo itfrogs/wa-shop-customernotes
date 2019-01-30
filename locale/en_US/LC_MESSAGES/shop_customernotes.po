@@ -11,7 +11,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 "Language: en_US\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
 
@@ -50,4 +50,148 @@ msgstr ""
 
 #: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:6
 msgid "Hides the note in order by default"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/feedbackControl.html:6
+msgid "QR code"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/feedbackControl.html:10
+msgid "Technical support for this plugin"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:8
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:10
+msgid "Show notes"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:39
+msgid "Delete this note?"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.rating.html:13
+msgid "Total:"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Basic.html:1
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:8
+msgid "Basic settings"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:1
+msgid "Flex order"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Info.html:1
+#: /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:102
+msgid "Information"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Api.html:1
+#: /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:98
+msgid "External base connect"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:6
+msgid "You are logged in"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:11
+msgid "Logout"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:47
+msgid "Connect"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/errors.html:3
+msgid "Errors"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/classes/shopCustomernotesApi.class.php:58
+msgid "The plugin is not authorized on the external server."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendLogin.controller.php:105
+msgid "Settings error"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendLogin.controller.php:106
+msgid "Unable to login. See for more details in customernotes-auth-error.log"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/actions/shopCustomernotesPluginBackendShownotes.controller.php:24
+msgid "Access denied"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:5
+msgid "Show notes in the order"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:6
+msgid "Shows the note in order by default"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:28
+msgid "Autorization"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:36
+msgid "Ask for technical support"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:39
+msgid "Click on the link to contact the developer."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:1
+msgid "Customer's notes"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:23
+msgid "Automatically retrieve the UUID of all users from the external database. No personal data and no statistics are transmitted. You simply get a unique user ID that can be used to receive or transmit statistical data."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:33
+msgid "Automatically send customer payment statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of payment for the order for the given UUID are stored."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:44
+msgid "Automatically send customer returns statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of order return for this UUID are saved."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/requirements.php:6
+msgid "The data exchange with third-party servers"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:9
+msgid "bstats.ru info"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:5
+msgid "Country"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:15
+msgid "City"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:25
+msgid "Total rating"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:37
+msgid "Total payments"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:47
+msgid "Total refunds"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:50
+msgid "Automatically send customer rating statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the rating for this UUID are saved."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.api_customer.html:56
+msgid "Refresh client info"
 msgstr ""

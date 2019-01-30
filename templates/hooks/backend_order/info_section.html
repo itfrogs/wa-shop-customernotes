@@ -1,0 +1,49 @@
+<link href="{$wa_url}wa-apps/shop/plugins/customernotes/css/customernotes.css" rel="stylesheet" type="text/css">
+<script src="{$wa_url}wa-apps/shop/plugins/customernotes/js/customernotes.js" type="text/javascript"></script>
+<form id="customernotesControlForm" action="javascript:void(0);">
+    <div id="customernotes-rating">
+        {include file="./info_section.rating.html" inline}
+    </div>
+    {if $settings.get_uuids && (isset($api_customer) && !empty($api_customer)) || (isset($uuids) && !empty($uuids))}
+        <div class="field">
+            <div class="name">[`bstats.ru info`]</div>
+            <div class="value" id="customernotes-bstats-customer">
+                {include file="./info_section.api_customer.html" inline}
+            </div>
+        </div>
+    {/if}
+    <div class="field">
+        <div class="name">[`Show notes`]</div>
+        <div class="value">
+            <input type="checkbox" title="[`Show notes`]" class="checkbox s-toggle-status" value="1" {if $settings.show_notes == 1} checked{/if}>
+        </div>
+    </div>
+</form>
+
+<div id="customernotesContent" class="noprint" {if !$settings.show_notes} style="display: none;"{/if}>
+    <div id="customernotes-form">
+        {include file="./info_section.form.html" inline}
+    </div>
+    <div id="customernotes-notes" class="block noprint">
+        {include file="./info_section.notes.html" inline}
+    </div>
+</div>
+<style type="text/css">
+    body.s-printable #customernotesControlForm,
+    body.s-printable #customernotesContent {
+        display: none;
+    }
+    @media print {
+        #customernotesControlForm,
+        #customernotesContent
+        {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    $.Customernotes.contact_id = {$contact_id};
+    $.Customernotes.confirm_message = '[`Delete this note?`]';
+    $.Customernotes.init();
+</script>

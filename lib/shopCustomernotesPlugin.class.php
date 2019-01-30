@@ -1,23 +1,23 @@
 <?php
 
+/**
+ * Class shopCustomernotesPlugin
+ */
 class shopCustomernotesPlugin extends shopPlugin
 {
     /**
      * @var waView $view
      */
     private static $view;
-    private static function getView()
-    {
-        if (!isset(self::$view)) {
-            self::$view = waSystem::getInstance()->getView();
-        }
-        return self::$view;
-    }
-
     /**
      * @var shopCustomernotesPlugin $plugin
      */
     private static $plugin;
+
+    /**
+     * @return shopCustomernotesPlugin|waPlugin
+     * @throws waException
+     */
     private static function getPlugin()
     {
         if (!isset(self::$plugin)) {
@@ -26,6 +26,34 @@ class shopCustomernotesPlugin extends shopPlugin
         return self::$plugin;
     }
 
+    /**
+     * @return waSmarty3View|waView
+     * @throws waException
+     */
+    private static function getView()
+    {
+        if (!isset(self::$view)) {
+            self::$view = waSystem::getInstance()->getView();
+        }
+        return self::$view;
+    }
+
+
+    /**
+     * @return string
+     * @throws waException
+     */
+    public static function getPluginPath()
+    {
+        $plugin = self::getPlugin();
+        return $plugin->path;
+    }
+
+    /**
+     * @param $order
+     * @return array
+     * @throws waException
+     */
     public function backendOrder($order) {
         $view = self::getView();
         $rm = new shopCustomernotesNotesModel();
@@ -33,74 +61,119 @@ class shopCustomernotesPlugin extends shopPlugin
         $view->assign('contact_id', $order['contact_id']);
         $view->assign('order_id', $order['id']);
         $view->assign('notes', $rm->getNotesByContactId($order['contact_id']));
+        $view->assign('note', $note  = $rm->getById($order['id']));
         $view->assign('settings', $this->getSettings());
 
+        if ($this->settings['get_uuids']) {
+            $api = new shopCustomernotesApi();
+            $api_customer_model = new shopCustomernotesCustomerModel();
+
+            $customer = $api_customer_model->getById($order['contact_id']);
+
+            if (empty($customer)) {
+                try {
+                    $uuids = $api->getUuid($order['contact_id']);
+                    //waLog::dump($uuids, 'uuids.log');
+                    if (count($uuids) == 1) {
+                        $uuid = reset($uuids);
+                        $uuid = $api->updateUuid($uuid->uuid, $order['contact_id']);
+                        if (isset($uuid['uuid'])) {
+                            $customer = $api->saveCustomer($order['contact_id'], $uuid);
+                            if (!empty($customer['country'])) {
+                                $customer['country'] = waCountryModel::getInstance()->name(ifempty($customer['country']));
+                            }
+                            $view->assign('api_contact_id', $order['contact_id']);
+                            $view->assign('api_customer', $customer);
+                        }
+                    }
+                    else {
+                        $view->assign('uuids', (array) $uuids);
+                    }
+                } catch (waException $e) {
+                    if (waSystemConfig::isDebug()) {
+                        waLog::log($e->getMessage(), 'customernotes-api-error.log');
+                    }
+                }
+            }
+            else {
+                if (!empty($customer['country'])) {
+                    $customer['country'] = waCountryModel::getInstance()->name(ifempty($customer['country']));
+                }
+                $view->assign('api_contact_id', $order['contact_id']);
+                $view->assign('api_customer', $customer);
+            }
+        }
+
         return array(
-            'info_section' => $view->fetch($this->path . '/templates/orderInfoSection.html'),
+            'info_section' => $view->fetch($this->path . '/templates/hooks/backend_order/info_section.html'),
         );
     }
 
+
+    /**
+     * @return string
+     */
     public function getPluginUrl() {
         return $this->getPluginStaticUrl(false);
     }
 
-    public function getPluginPath() {
-        return $this->path;
+
+    /**
+     * @return string
+     * @throws waException
+     */
+    public static function getFeedbackControl()
+    {
+        $view = self::getView();
+        $plugin = self::getPlugin();
+        return $view->fetch($plugin->getPluginPath() . '/templates/controls/feedbackControl.html');
     }
 
-    public static function settingCustomControlLrc()
+    /**
+     * @return array
+     */
+    public static function getTabs()
     {
-        $plugin = self::getPlugin();
+        $tabs = array(
+            'api' => array(
+                'name' => _wp('External base connect'),
+                'template' => 'Api.html',
+            ),
+            'info' => array(
+                'name' => _wp('Information'),
+                'template' => 'Info.html',
+            ),
+        );
+        return $tabs;
+    }
+
+    /**
+     * @return string
+     * @throws waException
+     */
+    public static function getAuthControl()
+    {
         $view = self::getView();
+        $plugin = self::getPlugin();
         $settings = $plugin->getSettings();
+
+        $errors = array();
+
+        $errors_template = '';
+
+        $view->assign('errors_template', $errors_template);
+
+        $redirect_uri = wa()->getUrl(true) . '?action=plugins#/customernotes';
+
+        $login_url = $settings['api_url'] . '/api.php/auth?client_id=dossier.com&client_name=dossier&response_type=code&scope=dossier&format=json&redirect_uri='.$redirect_uri;
+        $view->assign('login_url', $login_url);
+
+        $view->assign('errors', $errors);
         $view->assign('settings', $settings);
 
-        return $view->fetch($plugin->getPluginPath() . '/templates/SettingsCustomControlLrc.html');
-    }
+        $login_template = $view->fetch(self::getPluginPath() . '/templates/actions/backend/auth/login.html');
+        $view->assign('login_template', $login_template);
 
-    public static function settingCustomControlLrcLink()
-    {
-        $plugin = self::getPlugin();
-        $view = self::getView();
-        $asm = new waAppSettingsModel();
-        $redirect_uri = wa()->getUrl(true). '?action=plugins#/customernotes/';
-
-        $referer = parse_url(waRequest::server('HTTP_REFERER'));
-        parse_str($referer['query'], $vars);
-
-        if (isset($vars['code'])) {
-            $postdata = http_build_query(
-                array(
-                    "grant_type" => "authorization_code",
-                    "client_id" => "l-r-c.info",
-                    'code' => $vars['code'],
-                )
-            );
-
-            $url = 'http://webasyst.itfrogs.ru/api.php/token/?';
-            $options = array(
-                "format" => "JSON"
-            );
-            $url .= http_build_query($options,'','&');
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
-
-            $data = json_decode(curl_exec($ch));
-            curl_close($ch);
-            if (isset($data->access_token)) {
-                $asm->set(array('shop', 'customernotes'), 'token', $data->access_token);
-            }
-        }
-
-        $token = $asm->get(array('shop', 'customernotes'), 'token');
-        $view->assign('redirect_uri', $redirect_uri);
-        $view->assign('token', $token);
-
-        return $view->fetch($plugin->getPluginPath() . '/templates/SettingsCustomControlLrcLink.html');
+        return $view->fetch(self::getPluginPath() . '/templates/controls/authControl.html');
     }
 }

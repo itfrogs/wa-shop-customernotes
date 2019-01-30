@@ -1,0 +1,16 @@
+<form id="customernotesAddNote" class="noprint" action="javascript:void(0);" onsubmit="$.Customernotes.addNote({$order_id})">
+    <div class="field-group">
+        <div class="field">
+            <div class="name">[`Note about customer:`]</div>
+            <div class="value">
+                <textarea name="customernotesNote">{$note.note|escape}</textarea>
+                <input type="hidden" name="customernotesNoteOrderId" value="{$order_id}">
+            </div>
+        </div>
+        <div class="field">
+            <div class="value">
+                <input id="customernotesAddNoteButton" type="submit" class="button" value="[`Save`]" />
+            </div>
+        </div>
+    </div>
+</form>

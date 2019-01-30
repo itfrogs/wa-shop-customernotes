@@ -11,7 +11,7 @@
     float: left;
     background: #fff;
     text-decoration: none;
-    background-image: url(../img/sprite.png);
+    /*background-image: url(../img/sprite.png);*/
     background-repeat: no-repeat;
     font-weight: bold;
 }
@@ -32,7 +32,7 @@
     -moz-border-radius-bottomleft: 7px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
-    padding: 3px 10px 0 35px;
+    padding: 3px 10px 0 10px;
     height: 21px;
 }
 .rateDown {
@@ -44,16 +44,17 @@
     -moz-border-radius-bottomright: 7px;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
-    padding: 3px 10px 0 35px;
+    padding: 3px 10px 0 10px;
     height: 21px;
 }
+
 .rateUp:hover,.rateUp.active {
-    background-position: 0 -24px;
-}
-.rateDown:hover,.rateDown.active {
-    background-position: 0 -72px;
+    background: #aaffaa;
 }
 
+.rateDown:hover,.rateDown.active {
+    background: #e2e25b;
+}
 
 ul.menu-v.compact i.icon16 {
     margin-top: -2px;
@@ -66,7 +67,7 @@ i.rateUpIcon {
     margin: -0.1em 0.25em 0 0;
     text-decoration: none !important;
     vertical-align: top;
-    background-image: url("../img/up24.png");
+    /*background-image: url("../img/up24.png");*/
     background-repeat: no-repeat;
     display: inline-block;
     height: 24px;
@@ -77,7 +78,7 @@ i.rateDownIcon {
     margin: -0.1em 0.25em 0 0;
     text-decoration: none !important;
     vertical-align: top;
-    background-image: url("../img/down24.png");
+    /*background-image: url("../img/down24.png");*/
     background-repeat: no-repeat;
     display: inline-block;
     height: 24px;

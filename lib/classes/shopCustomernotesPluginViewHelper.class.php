@@ -8,39 +8,52 @@
  */
 class shopCustomernotesPluginViewHelper extends waViewHelper
 {
+
     /**
-     * @var shopCustomernotesPlugin $plugin
+     * @param $order_id
+     * @param int $rate_id
+     * @return array
      */
-    private static $plugin;
-
-    private static function getPlugin()
-    {
-        if (!empty(self::$plugin)) {
-            $plugin = self::$plugin;
-        } else {
-            $plugin = wa()->getPlugin('customernotes');
-        }
-        return $plugin;
-    }
-
     public static function getCustomerRating($order_id, $rate_id = 0) {
         $nm = new shopCustomernotesNotesModel();
         $rating = $nm->getCustomerRating($order_id);
         return $rating;
     }
 
+    /**
+     * @param $rate
+     * @return string
+     */
     public static function getRatePic($rate) {
         $output = '';
         if ($rate > 0) {
-            $output = '<i class="rateUpIcon"></i>';
+            $output = '<i class="icon16 plus"></i>';
         }
         elseif ($rate < 0) {
-            $output = '<i class="rateDownIcon"></i>';
+            $output = '<i class="icon16 minus"></i>';
         }
         else {
-            $output = '<i class="emptyIcon"></i>';
+            $output = '<i class="icon16 status-gray"></i>';
         }
         return $output;
     }
 
+    public static function clearPhoneNumber($phone) {
+
+        $phone = preg_replace("#[^\d]#", "", $phone);
+
+        if (strlen($phone) < 11) return false;
+
+        if (strlen($phone) == 11 && $phone[0] == 8) {
+            $phone[0] = 7;
+        }
+        return $phone;
+    }
+
+    public static function validateEmail($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+        else return false;
+    }
 }

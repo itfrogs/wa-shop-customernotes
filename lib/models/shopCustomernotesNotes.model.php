@@ -8,23 +8,19 @@
 
 class shopCustomernotesNotesModel extends waModel {
 
+    /**
+     * Primary key of the table
+     * @var string
+     */
+    protected $id = 'order_id';
+
     protected $table = 'shop_customernotes_notes';
 
-    public function getCustomerRating($order_id, $rate_id = 0) {
+    public function getCustomerRating($order_id) {
         $om = new shopOrderModel();
         $order = $om->getById($order_id);
 
-        $user_id = wa()->getUser()->getId();
-
-        $row = $this->query(
-            "SELECT rate, note FROM ".$this->table." WHERE order_id = i:order_id AND create_contact_id = i:create_contact_id",
-            array(
-                'order_id' => $order_id,
-                'create_contact_id' => $user_id,
-            ))->fetch();
-
         $rating = array(
-            'id' => $rate_id,
             'up' => $this->query(
                     "SELECT SUM(rate) FROM ".$this->table." WHERE contact_id = i:id AND rate = 1",
                     array('id' => $order['contact_id'])
@@ -37,31 +33,30 @@ class shopCustomernotesNotesModel extends waModel {
                 "SELECT SUM(rate) FROM ".$this->table." WHERE contact_id = i:id",
                 array('id' => $order['contact_id'])
             )->fetchField(),
-            'order' => $row['rate'],
-            'order_id' => $order_id,
-            'rate' => $row['rate'],
-            'note' => $row['note'],
         );
 
-        foreach ($rating as $key => $r) {
-            if (empty($r) && $key !== 'note' and $key !== 'id') {
-                $rating[$key] = 0;
-            }
-        }
         $rating['down'] = abs($rating['down']);
+
+        foreach ($rating as &$r) {
+            if ($r === null) $r = 0;
+        }
 
         return $rating;
     }
 
+    public function getRatingSumm($contact_id) {
+        $rating = $this->query(
+            "SELECT SUM(rate) FROM ".$this->table." WHERE contact_id = i:id",
+            array('id' => $contact_id)
+        )->fetchField();
+        return $rating;
+    }
+
     public function rateCustomer($order_id, $rate) {
-
-        $user_id = wa()->getUser()->getId();
-
         $currentRate = $this->query(
-            "SELECT * FROM ".$this->table." WHERE order_id = i:order_id AND create_contact_id = i:create_contact_id",
+            "SELECT * FROM ".$this->table." WHERE order_id = i:order_id",
             array(
                 'order_id' => $order_id,
-                'create_contact_id' => $user_id,
             ))->fetch();
 
         $om = new shopOrderModel();
@@ -69,11 +64,9 @@ class shopCustomernotesNotesModel extends waModel {
 
         if (empty($currentRate)) {
             $data = array(
-                'contact_id'   => $order['contact_id'],
-                'create_datetime'   => date('Y-m-d H:i:s'),
-                'update_datetime'   => date('Y-m-d H:i:s'),
-                'create_contact_id' => $user_id,
                 'order_id'          => $order_id,
+                'contact_id'   => $order['contact_id'],
+                'datetime'   => date('Y-m-d H:i:s'),
                 'rate'              => $rate,
             );
             $data['id'] = $this->insert($data);
@@ -81,8 +74,8 @@ class shopCustomernotesNotesModel extends waModel {
         else {
             $data = $currentRate;
             $data['rate'] = intval($rate);
-            $data['update_datetime'] = date('Y-m-d H:i:s');
-            $this->updateByField('order_id', $order_id, $data);
+            $data['datetime'] = date('Y-m-d H:i:s');
+            $this->updateById($order_id, $data);
         }
 
         return $this->getCustomerRating($order['id'], $data['id']);
@@ -90,13 +83,10 @@ class shopCustomernotesNotesModel extends waModel {
 
     public function noteCustomerByOrderId($order_id, $note)
     {
-        $user_id = wa()->getUser()->getId();
-
         $currentRate = $this->query(
-            "SELECT * FROM ".$this->table." WHERE order_id = i:order_id AND create_contact_id = i:create_contact_id",
+            "SELECT * FROM ".$this->table." WHERE order_id = i:order_id",
             array(
                 'order_id' => $order_id,
-                'create_contact_id' => $user_id,
             ))->fetch();
 
         $om = new shopOrderModel();
@@ -104,18 +94,17 @@ class shopCustomernotesNotesModel extends waModel {
 
         if (empty($currentRate)) {
             $data = array(
-                'contact_id'   => $order['contact_id'],
-                'create_datetime'   => date('Y-m-d H:i:s'),
-                'create_contact_id' => wa()->getUser()->getId(),
-                'order_id'          => $order_id,
-                'rate'              => 0,
-                'note'              => $note,
+                'order_id'      => $order_id,
+                'contact_id'    => $order['contact_id'],
+                'datetime'      => date('Y-m-d H:i:s'),
+                'rate'          => 0,
+                'note'          => $note,
             );
-            $data['id'] = $this->insert($data);
+            $this->insert($data);
         }
         else {
             $data = $currentRate;
-            $data['update_datetime'] = date('Y-m-d H:i:s');
+            $data['datetime'] = date('Y-m-d H:i:s');
             $data['note'] = $note;
             $this->updateByField('order_id', $order_id, $data);
         }
@@ -127,9 +116,9 @@ class shopCustomernotesNotesModel extends waModel {
     }
 
     public function getNotesByContactId($contact_id) {
-        return $this->select('id, note, rate, order_id')
-            ->where('note IS NOT NULL AND contact_id = '.(int)$contact_id)
-            ->order('update_datetime DESC')
+        return $this->select('*')
+            ->where('contact_id = ' . intval($contact_id))
+            ->order('datetime DESC')
             ->fetchAll();
     }
 }

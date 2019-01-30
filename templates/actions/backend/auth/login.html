@@ -1,0 +1,55 @@
+{if !empty($settings.dossier_token)}
+    <p>
+        <table style="border-spacing: 5px 5px !important; border-collapse: separate;">
+            <tr>
+                <td>
+                    [`You are logged in`]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="javascript:void(0);" class="button red" onclick="$.Customernotes_settings.logout();"><i class="icon16 broom"></i>[`Logout`]</a>
+                </td>
+            </tr>
+        </table>
+    </p>
+    <p>
+        <input type="checkbox"
+               name="shop_customernotes[get_uuids]"
+               value="1"
+               class="checkbox"
+               id="wahtmlcontrol_shop_customernotes_get_uuids"
+               title="Automatically receive UUID" {if $settings.get_uuids}checked{/if}> <br />
+        <span class="hint">[`Automatically retrieve the UUID of all users from the external database. No personal data and no statistics are transmitted. You simply get a unique user ID that can be used to receive or transmit statistical data.`]</span>
+    </p>
+    <p>
+        <input type="checkbox"
+               name="shop_customernotes[send_pay_stats]"
+               value="1"
+               class="checkbox"
+               id="wahtmlcontrol_shop_customernotes_send_pay_stats"
+               title="Automatically receive UUID" {if $settings.send_pay_stats}checked{/if}> <br />
+        <span class="hint">[`Automatically send customer payment statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of payment for the order for the given UUID are stored.`]</span>
+    </p>
+    <p>
+        <input type="checkbox"
+               name="shop_customernotes[send_refund_stats]"
+               value="1"
+               class="checkbox"
+               id="wahtmlcontrol_shop_customernotes_send_refund_stats"
+               title="Automatically receive UUID" {if $settings.send_refund_stats}checked{/if}> <br />
+        <span class="hint">[`Automatically send customer returns statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of order return for this UUID are saved.`]</span>
+    </p>
+    <p>
+        <input type="checkbox"
+               name="shop_customernotes[send_rating_stats]"
+               value="1"
+               class="checkbox"
+               id="wahtmlcontrol_shop_customernotes_send_rating_stats"
+               title="Automatically receive UUID" {if $settings.send_rating_stats}checked{/if}> <br />
+        <span class="hint">[`Automatically send customer rating statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the rating for this UUID are saved.`]</span>
+    </p>
+
+{else}
+    <a href="{$login_url}"><i class="icon16 sync"></i>[`Connect`]</a>
+{/if}

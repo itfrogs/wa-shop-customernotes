@@ -1,0 +1,17 @@
+{$rating = shopCustomernotesPluginViewHelper::getCustomerRating($order_id)}
+<div class="field">
+    <div class="name">[`Client rating:`]</div>
+    <div class="value">
+        <div class="rateWrapper">
+             <span onclick="$.Customernotes.rateObject.rate(this)" data-order_id="{$order_id}" class="rate rateUp {if $note.rate > 0}active{/if}">
+                 <i class="icon16 plus"></i>{$rating.up}
+             </span>
+            <span onclick="$.Customernotes.rateObject.rate(this)" data-order_id="{$order_id}" class="rate rateDown {if $note.rate < 0}active{/if}">
+                 <i class="icon16 minus"></i>{$rating.down}
+            </span>
+            <span style="margin-left: 20px; line-height: 24px; {if $rating.sum > 0}color:green;{elseif $rating.sum < 0}color:red;{else}color:gray;{/if}">
+                [`Total:`]&nbsp;{$rating.sum}
+            </span>
+        </div>
+    </div>
+</div>
