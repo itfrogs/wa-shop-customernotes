@@ -9,12 +9,12 @@
 class shopCustomernotesPluginBackendLoginController extends waJsonController
 {
     /**
-     * @var blogWallPlugin $plugin
+     * @var shopCustomernotesPlugin $plugin
      */
     private static $plugin;
 
     /**
-     * @return blogWallPlugin|waPlugin
+     * @return shopCustomernotesPlugin|waPlugin
      * @throws waException
      */
     private static function getPlugin()
@@ -69,7 +69,7 @@ class shopCustomernotesPluginBackendLoginController extends waJsonController
                 if (!empty($code)) {
                     $request_data = array(
                         'code'          => $code,
-                        'client_id'     => 'dossier.com',
+                        'client_id'     => 'bstats.ru',
                         'grant_type'    => 'authorization_code',
                     );
 
@@ -109,7 +109,7 @@ class shopCustomernotesPluginBackendLoginController extends waJsonController
                 }
             }
 
-            $login_url = $settings['api_url'] . '/api.php/auth?client_id=dossier.com&client_name=dossier&response_type=code&scope=dossier&format=json&redirect_uri='.$redirect_uri;
+            $login_url = $settings['api_url'] . '/api.php/auth?client_id=bstats.ru&client_name=dossier&response_type=code&scope=dossier&format=json&redirect_uri='.$redirect_uri;
             $view->assign('login_url', $login_url);
             $view->assign('errors_template', $errors_template);
 

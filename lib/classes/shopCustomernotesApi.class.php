@@ -73,6 +73,7 @@ class shopCustomernotesApi
     public function request($method, $postfields = array())
     {
         $url = $this->url . '/api.php/?app=dossier&method='.$method.'&access_token='.$this->token;
+        waLog::log($url);
         try {
             $this->net->query($url, $postfields, waNet::METHOD_POST);
             $result = json_decode($this->net->getResponse());

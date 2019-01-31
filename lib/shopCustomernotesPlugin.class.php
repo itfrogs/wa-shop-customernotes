@@ -165,7 +165,7 @@ class shopCustomernotesPlugin extends shopPlugin
 
         $redirect_uri = wa()->getUrl(true) . '?action=plugins#/customernotes';
 
-        $login_url = $settings['api_url'] . '/api.php/auth?client_id=dossier.com&client_name=dossier&response_type=code&scope=dossier&format=json&redirect_uri='.$redirect_uri;
+        $login_url = $settings['api_url'] . '/api.php/auth?client_id=bstats.ru&client_name=dossier&response_type=code&scope=dossier&format=json&redirect_uri='.$redirect_uri;
         $view->assign('login_url', $login_url);
 
         $view->assign('errors', $errors);
