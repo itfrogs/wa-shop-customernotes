@@ -176,4 +176,14 @@ class shopCustomernotesPlugin extends shopPlugin
 
         return $view->fetch(self::getPluginPath() . '/templates/controls/authControl.html');
     }
+
+    /**
+     * @return string
+     * @throws waException
+     */
+    public static function getAuthHint()
+    {
+        $view = self::getView();
+        return $view->fetch(self::getPluginPath() . '/templates/controls/authHint.html');
+    }
 }
