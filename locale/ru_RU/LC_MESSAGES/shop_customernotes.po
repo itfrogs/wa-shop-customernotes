@@ -244,7 +244,7 @@ msgstr "Если Вы уже зарегистрированы, нужно "
 
 #: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:12
 msgid "Hint"
-msgstr ""
+msgstr "Подсказка"
 
 #: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:6
 msgid "log in"
