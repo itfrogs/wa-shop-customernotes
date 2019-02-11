@@ -36,7 +36,8 @@ msgstr "Позволяет создавать и просматривать за
 msgid "Save"
 msgstr "Сохранить"
 
-#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:7 /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:9
+#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:7
+#: /wa-apps/shop/plugins/customernotes/templates/orderInfoSection.html:9
 msgid "Hide notes"
 msgstr "Спрятать заметки"
 
@@ -60,7 +61,8 @@ msgstr "QR код"
 msgid "Technical support for this plugin"
 msgstr "Техническая поддержка этого плагина"
 
-#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:8 /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:10
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:8
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:10
 msgid "Show notes"
 msgstr "Показать заметки"
 
@@ -72,7 +74,8 @@ msgstr "Удалить эту заметку?"
 msgid "Total:"
 msgstr "Всего:"
 
-#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Basic.html:1 /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:8
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Basic.html:1
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Settings.html:8
 msgid "Basic settings"
 msgstr "Основные настройки"
 
@@ -80,11 +83,13 @@ msgstr "Основные настройки"
 msgid "Flex order"
 msgstr "Гибкий заказ"
 
-#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Info.html:1 /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:102
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Info.html:1
+#: /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:102
 msgid "Information"
 msgstr "Информация"
 
-#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Api.html:1 /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:98
+#: /wa-apps/shop/plugins/customernotes/templates/actions/settings/Api.html:1
+#: /wa-apps/shop/plugins/customernotes/lib/shopCustomernotesPlugin.class.php:98
 msgid "External base connect"
 msgstr "Соединение с внешней базой"
 
@@ -146,9 +151,7 @@ msgstr "Заметки о клиенте"
 
 #: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:23
 msgid "Automatically retrieve the UUID of all users from the external database. No personal data and no statistics are transmitted. You simply get a unique user ID that can be used to receive or transmit statistical data."
-msgstr ""
-"Автоматически получать UUID всех пользователей из внешней базы. При этом не передается никаких персональных данных и никакой статистики. Вы просто получаете уникальный идентификатор пользователя, который может быть использован для "
-"получения или передачи статистических данных."
+msgstr "Автоматически получать UUID всех пользователей из внешней базы. При этом не передается никаких персональных данных и никакой статистики. Вы просто получаете уникальный идентификатор пользователя, который может быть использован для получения или передачи статистических данных."
 
 #: /wa-apps/shop/plugins/customernotes/templates/actions/backend/auth/login.html:32
 msgid "Automatically send customer payment statistics to an external server. No personal information or payment amounts. On the server, only the client UUID and the number of facts of payment for the order for the given UUID are stored."
@@ -194,7 +197,8 @@ msgstr "Автоматически отправлять на внешний се
 msgid "Refresh client info"
 msgstr "Обновить информацию о клиенте"
 
-#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:32 /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:33
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:32
+#: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:33
 msgid "Get notes from bstats.ru"
 msgstr "Получить заметки с bstats.ru"
 
@@ -225,3 +229,23 @@ msgstr "Нет заметок по этому покупателю на bstats.r
 #: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:58
 msgid "Comments may contain confidential information about the customer. Are you sure you want to send this comment to an external database? Anyone who makes a request for this customer will see it."
 msgstr "Комментарии могут содержать конфиденциальную информацию о покупателе. Вы уверены что хотите отправить этот комментарий во внешнюю базу? Его увидят все, кто сделает запрос по этому покупателю."
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:2
+msgid "This option allows you to share statistics about the actions of customers between stores. No personal data is transmitted. Only server hashes and e-mails of clients, the number of payments, purchases and returns are sent to the server. Also, if desired, you can send feedback about the client. By exchanging such information you will be able to assess the reputation of the buyer and you will be warned of possible troubles that occurred earlier with the same buyer with other stores."
+msgstr "Данная опция позволяет обмениваться статистикой о действиях клиентов между магазинами. Никаких персональных данных не передается. На сервер отправляются только хеши телефонов и е-мэйлов клиентов, количество оплат, покупок и возвратов. Так же, по желанию, можно отправлять и отзывы о клиенте. Обмениваясь такой информацией вы сможете оценить репутацию покупателя и будете предупреждены о возможных неприятностях, которые происходили ранее у этого же покупателя с другими магазинами."
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:5
+msgid "Before connecting to the API, you must register on"
+msgstr "Перед подключением к API необходимо зарегистрироваться на"
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:6
+msgid "If you are already registered, you need to"
+msgstr "Если Вы уже зарегистрированы, нужно "
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:12
+msgid "Hint"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:6
+msgid "log in"
+msgstr "войти"

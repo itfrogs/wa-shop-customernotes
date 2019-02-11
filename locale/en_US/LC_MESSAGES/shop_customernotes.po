@@ -228,3 +228,23 @@ msgstr ""
 #: /wa-apps/shop/plugins/customernotes/templates/hooks/backend_order/info_section.html:58
 msgid "Comments may contain confidential information about the customer. Are you sure you want to send this comment to an external database? Anyone who makes a request for this customer will see it."
 msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:2
+msgid "This option allows you to share statistics about the actions of customers between stores. No personal data is transmitted. Only server hashes and e-mails of clients, the number of payments, purchases and returns are sent to the server. Also, if desired, you can send feedback about the client. By exchanging such information you will be able to assess the reputation of the buyer and you will be warned of possible troubles that occurred earlier with the same buyer with other stores."
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:5
+msgid "Before connecting to the API, you must register on"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:6
+msgid "If you are already registered, you need to"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/lib/config/settings.php:12
+msgid "Hint"
+msgstr ""
+
+#: /wa-apps/shop/plugins/customernotes/templates/controls/authHint.html:6
+msgid "log in"
+msgstr ""
