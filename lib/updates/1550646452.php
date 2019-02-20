@@ -10,19 +10,22 @@ try {
     $nm = new shopCustomernotesNotesModel();
     if(!$nm->fieldExists('datetime')) {
         $order_model = new shopOrderModel();
-        $orders = $order_model->select('id')->fetchAll();
+        $orders = $order_model->query(
+            'SELECT o.id FROM shop_order o '
+            . 'JOIN shop_customernotes_notes n ON n.order_id = o.id '
+        )->fetchAll();
 
         foreach ($orders as $order) {
             $notes = $nm->select('*')->where('order_id = ' . intval($order['id']))->fetchAll();
 
             if (count($notes) > 1) {
-                $old_note = reset($notes);
+                $old_note = $notes[0];
                 foreach ($notes as $note) {
                     if ($note['id'] != $old_note['id']) {
                         $old_note['note'] .= PHP_EOL . $note['note'];
                         $old_note['rate'] = $old_note['rate'] + $note['rate'];
 
-                        $nm->deleteById($note['id']);
+                        $nm->deleteByField('id', $note['id']);
                     }
                 }
 
