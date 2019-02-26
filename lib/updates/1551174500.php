@@ -6,6 +6,21 @@
  * Time: 12:31 PM
  */
 
+/*
+ * Удаляем старые обновления. Это нужно для тех, кто не обновлял плагин и запускает обновление впервые.
+ * Тогда он запустит самое правильное обновление, а не каскад из исправлений.
+ */
+
+try {
+    $path = wa()->getAppPath(null, 'shop') . '/plugins/customernotes/lib/updates/1545150233.php';
+    waFiles::delete($path);
+    $path = wa()->getAppPath(null, 'shop') . '/plugins/customernotes/lib/updates/1550646452.php';
+    waFiles::delete($path);
+}
+catch (waException $e) {
+
+}
+
 try {
     $nm = new shopCustomernotesNotesModel();
     if(!$nm->fieldExists('datetime')) {
