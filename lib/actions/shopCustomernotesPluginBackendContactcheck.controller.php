@@ -38,8 +38,12 @@ class shopCustomernotesPluginBackendContactcheckController extends waJsonControl
                 }
 
                 $uuid = $api->updateUuid($uuid['uuid'], $contact_id);
+
+                waLog::dump($uuid, 'custuuid.log');
+
                 if (isset($uuid['uuid'])) {
                     $customer = $api->saveCustomer($contact_id, $uuid);
+                    waLog::dump($customer, 'custuuid.log');
                     if (!empty($customer['country'])) {
                         $customer['country'] = waCountryModel::getInstance()->name(ifempty($customer['country']));
                     }

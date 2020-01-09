@@ -78,7 +78,7 @@ class shopCustomernotesNotesModel extends waModel {
             $this->updateById($order_id, $data);
         }
 
-        return $this->getCustomerRating($order['id'], $data['id']);
+        return $this->getCustomerRating($order['id']);
     }
 
     public function noteCustomerByOrderId($order_id, $note)

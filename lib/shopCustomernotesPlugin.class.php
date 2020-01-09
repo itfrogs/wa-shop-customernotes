@@ -74,7 +74,7 @@ class shopCustomernotesPlugin extends shopPlugin
                 try {
                     $uuids = $api->getUuid($order['contact_id']);
                     //waLog::dump($uuids, 'uuids.log');
-                    if (count($uuids) == 1) {
+                    if (! empty($uuids) && count($uuids) == 1) {
                         $uuid = reset($uuids);
                         $uuid = $api->updateUuid($uuid->uuid, $order['contact_id']);
                         if (isset($uuid['uuid'])) {

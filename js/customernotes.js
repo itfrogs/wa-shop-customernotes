@@ -78,17 +78,25 @@
             }
         },
         apiGetNotes: function(order_id) {
-            $.post('?plugin=customernotes&action=getcomments', { order_id : order_id }, function (d) {
+            $.post('?plugin=customernotes&action=sendcomment', { order_id : order_id }, function (d) {
                 if (d.status == 'ok') {
-                    $('#customernotes-bstats').html(d.data.notes_template);
+                    $('#customernotes-update-comment-' + order_id).removeClass('loading').addClass('update');
+
+                    $.post('?plugin=customernotes&action=getcomments', { order_id : order_id }, function (d) {
+                        if (d.status == 'ok') {
+                            $('#customernotes-bstats').html(d.data.notes_template);
+                        }
+                    }, 'json');
                 }
             }, 'json');
+
+
         },
         contactcheck: function() {
             if ($.Customernotes.contact_id) {
                 $.post('?plugin=customernotes&action=contactcheck', { contact_id : $.Customernotes.contact_id }, function (d) {
                     if (d.status == 'ok') {
-                        //$('#customernotes-bstats-customer').html(d.data.customer);
+                        $('#customernotes-bstats-customer').html(d.data.customer);
                     }
                 }, 'json');
             }
