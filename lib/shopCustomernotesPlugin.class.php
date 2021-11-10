@@ -58,6 +58,12 @@ class shopCustomernotesPlugin extends shopPlugin
         $view = self::getView();
         $rm = new shopCustomernotesNotesModel();
 
+        if (!isset($order['contact_id']) || empty($order['contact_id'])) {
+            return array(
+                'info_section' => '',
+            );
+        }
+
         $view->assign('contact_id', $order['contact_id']);
         $view->assign('order_id', $order['id']);
         $view->assign('notes', $rm->getNotesByContactId($order['contact_id']));
