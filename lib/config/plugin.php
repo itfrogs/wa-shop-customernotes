@@ -4,7 +4,7 @@ return array (
     'description' => _wp("Allows you to create and view notes about the customer in the order."),
     'img' => 'img/customernotes16.png',
     'icon' => 'img/customernotes16.png',
-    'version' => '2.0.4',
+    'version' => '2.0.5',
     'vendor' => '964801',
     'shop_settings' => true,
     'handlers' =>

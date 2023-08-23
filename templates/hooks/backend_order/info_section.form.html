@@ -3,7 +3,7 @@
         <div class="field">
             <div class="name">[`Note about customer:`]</div>
             <div class="value">
-                <textarea name="customernotesNote">{$note.note|escape}</textarea>
+                <textarea name="customernotesNote">{if isset($note) && !empty($note) && isset($note.note) && !empty($note.note)}{$note.note|escape}{/if}</textarea>
                 <input type="hidden" name="customernotesNoteOrderId" value="{$order_id}">
             </div>
         </div>
